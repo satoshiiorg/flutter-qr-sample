@@ -16,19 +16,6 @@ class Qr{
     this.modified
   });
 
-  // Qr.newEmpty(): this(title: "", text: "", created: null, modified: null);
-
-  // Immutableにするなら必要だが
-  // Qr withId(int _id) {
-  //   return Qr(
-  //         id: _id,
-  //         title: title,
-  //         text: text,
-  //         created: created,
-  //         modified: modified
-  //   );
-  // }
-
   String toString() {
     return "Qr(id=$id,title=$title,text=$text,created=$created,modified=$modified)";
   }

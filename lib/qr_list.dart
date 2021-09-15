@@ -10,29 +10,12 @@ class QrListPage extends StatefulWidget {
 }
 
 class _QrListPageState extends State<QrListPage> {
-  // final List<Qr> qrList = [];
-  // final QrProvider provider = QrProvider();
-  //
-  // _QrListPageState() {
-  //   provider.open('qr.db');
-  // }
-
-  // @override
-  // void initState() {
-  //   Future.delayed(Duration.zero).then((_) => _loadQrList());
-  //   super.initState();
-  // }
-
-  // QRリストのロード
-  // Future _loadQrList() async {
-  //   QrProvider provider = QrProvider();
-  //   await provider.open('qr.db');
-  //   qrList.clear();
-  //   qrList.addAll(await provider.getQrList());
-  // }
 
   // QRリストのロード
   Future<List<Qr>> _loadQrList() async {
+    // TODO openまで初期処理時だけにしたい(一応)
+    // Subsequent calls to openDatabase with the same path will return the same instance
+    // とあるので問題はないが
     final provider = QrProvider();
     await provider.open('qr.db');
     return provider.getQrList();
@@ -74,15 +57,6 @@ class _QrListPageState extends State<QrListPage> {
             );
           }
         ),
-        // ListView.builder(
-        //     itemCount: qrList.length,
-        //     itemBuilder: (context, i) {
-        //       return ListTile(
-        //         title: Text(qrList[i].title),
-        //         onTap: () async => _popQrDetail(qrList[i]),
-        //       );
-        //     }
-        // ),
       ),
       // 新規ボタン
       floatingActionButton: FloatingActionButton(

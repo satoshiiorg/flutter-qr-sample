@@ -10,11 +10,6 @@ class QrDetailPage extends StatefulWidget {
   // 既存QR編集
   QrDetailPage({Key? key, required this.qr}) : super(key: key);
 
-  // 分けるとかえって面倒なのでコンストラクタのQRがnullならこれにとばす
-  // ⇛それも面倒だったのでコンストラクタ呼ぶ側でQr.newEmpty()を渡す⇛Qr()を渡す
-  // 新規QR作成
-  // QrDetailPage.empty(): this(qr: Qr(title: "", text: "", created: null, modified: null));
-
   @override
   _QrDetailPageState createState() => _QrDetailPageState();
 }
