@@ -16,6 +16,7 @@ class Qr{
     this.modified
   });
 
+  @override
   String toString() {
     return "Qr(id=$id,title=$title,text=$text,created=$created,modified=$modified)";
   }
