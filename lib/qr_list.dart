@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_generator/db.dart';
 import 'package:qr_generator/qr.dart';
 import 'package:qr_generator/qr_detail.dart';
@@ -45,9 +46,10 @@ class _QrListPageState extends State<QrListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l18n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-          title : Text("QR Code List")
+          title : Text(l18n.qrCodeList)
       ),
       body: Center(
         child: FutureBuilder<List<Qr>>(
@@ -69,8 +71,8 @@ class _QrListPageState extends State<QrListPage> {
                           context: context,
                           builder: (_) {
                             return AlertDialog(
-                              title: Text("Delete '${data[i].title}'"),
-                              content: Text("Are you sure?"),
+                              title: Text(l18n.deleteTitle(data[i].title)),
+                              content: Text(l18n.deleteMessage),
                               actions: <Widget>[
                                 // ボタン領域
                                 TextButton(

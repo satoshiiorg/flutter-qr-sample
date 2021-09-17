@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/db.dart';
 import 'package:qr_generator/qr.dart';
@@ -17,7 +18,9 @@ class QrDetailPage extends StatefulWidget {
 class _QrDetailPageState extends State<QrDetailPage> {
   // TODO 非効率的な気がする
   void _changeTitle(title) {
-    widget.qr.title = title;
+    setState(() {
+      widget.qr.title = title;
+    });
   }
 
   void _changeQr(text) {
@@ -36,6 +39,7 @@ class _QrDetailPageState extends State<QrDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l18n = AppLocalizations.of(context)!;
     return WillPopScope(
         onWillPop: () {
           Navigator.pop(context);
@@ -43,27 +47,26 @@ class _QrDetailPageState extends State<QrDetailPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            // TODO 動的に変更できる？
-            title: Text(widget.qr.title),
+            title: Text(l18n.detailTitle(widget.qr.title.isEmpty ? l18n.newQr : widget.qr.title)),
           ),
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Title'),
+                  decoration: InputDecoration(labelText: l18n.title),
                   initialValue: widget.qr.title,
                   onChanged: _changeTitle,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Text'),
+                  decoration: InputDecoration(labelText: l18n.text),
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   initialValue: widget.qr.text,
                   onChanged: _changeQr,
                 ),
                 ElevatedButton(
-                  child: const Text('Save'),
+                  child: Text(l18n.save),
                   onPressed: _saveQr,
                 ),
                 QrImage(
