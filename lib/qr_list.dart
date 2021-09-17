@@ -21,6 +21,15 @@ class _QrListPageState extends State<QrListPage> {
     return provider.getQrList();
   }
 
+  // QR削除
+  Future _deleteQr(Qr qr) async {
+    final provider = QrProvider();
+    await provider.open('qr.db');
+    setState(() {
+      provider.delete(qr.id!);
+    });
+  }
+
   // QR詳細画面を開き、戻ってきた場合は画面を更新する
   Future _popQrDetail(Qr? qr) async {
     await Navigator.push(
@@ -52,6 +61,35 @@ class _QrListPageState extends State<QrListPage> {
                   return ListTile(
                     title: Text(data[i].title),
                     onTap: () async => _popQrDetail(data[i]),
+                    // 削除ボタン
+                    trailing: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              title: Text("Delete '${data[i].title}'"),
+                              content: Text("Are you sure?"),
+                              actions: <Widget>[
+                                // ボタン領域
+                                TextButton(
+                                  child: Text("Cancel"),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                                TextButton(
+                                  child: Text("OK"),
+                                  onPressed: () {
+                                    _deleteQr(data[i]);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    ),
                   );
                 }
             );
