@@ -5,4 +5,4 @@
 
 - sqflite
 - qr_flutter
-
+- flutter_i18n
