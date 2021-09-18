@@ -47,6 +47,7 @@ class _QrListPageState extends State<QrListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l18n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
           title : I18nText('qrCodeList')
@@ -146,7 +147,7 @@ class _QrListPageState extends State<QrListPage> {
       // 新規ボタン
       floatingActionButton: FloatingActionButton(
         onPressed: () async => _popQrDetail(null),
-        tooltip: 'New QR Code',
+        // tooltip: 'New QR Code',
         child: Icon(Icons.add),
       ),
     );

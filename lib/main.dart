@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:qr_generator/preferences.dart';
 import 'package:qr_generator/qr_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,6 +65,7 @@ class _MyAppState extends State<MyApp> {
       ],
       // TODO いる？
       // builder: FlutterI18n.rootAppBuilder(),
+
       title: 'QR Generator',
       theme: ThemeData(
         primarySwatch: Colors.blue,

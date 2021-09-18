@@ -1,0 +1,29 @@
+{
+  "@@locale":"en",
+  "qrCodeList": "QR Code List",
+  "detailTitle": "{title} QR Code",
+  "@detailTitle": {
+    "description": "Page title for QR code detail",
+    "placeholders":{
+      "title":{
+        "description" : "QR code title",
+        "example" : "QR Code 1"
+      }
+    }
+  },
+  "newQr": "New",
+  "deleteTitle": "Delete {title}",
+  "@deleteTitle": {
+    "description": "Alert title for delete QR code",
+    "placeholders":{
+      "title":{
+        "description" : "QR code title",
+        "example" : "QR Code 1"
+      }
+    }
+  },
+  "deleteMessage": "Are you sure?",
+  "title": "Title",
+  "text": "Text",
+  "save": "Save"
+}
