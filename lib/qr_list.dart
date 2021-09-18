@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_generator/db.dart';
+import 'package:qr_generator/preferences.dart';
 import 'package:qr_generator/qr.dart';
 import 'package:qr_generator/qr_detail.dart';
 
@@ -50,6 +51,59 @@ class _QrListPageState extends State<QrListPage> {
     return Scaffold(
       appBar: AppBar(
           title : Text(l18n.qrCodeList)
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            // DrawerHeader(
+            //   child: Text(
+            //     'Settings',
+            //     // style: TextStyle(
+            //     //   fontSize: 24,
+            //     //   color: Colors.white,
+            //     // ),
+            //   ),
+            //   // decoration: BoxDecoration(
+            //   //   color: Colors.blue,
+            //   // ),
+            // ),
+            ListTile(
+              title: Text("言語設定"),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SimpleDialog(
+                      title: Text("言語設定"),
+                      children: <Widget>[
+                        SimpleDialogOption(
+                          child: Text("English"),
+                          onPressed: () {
+                            setState(() {
+                              Preferences().setLocale(Locale("en", ""));
+                            });
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                        ),
+                        SimpleDialogOption(
+                          child: Text("日本語"),
+                          onPressed: () {
+                            setState(() {
+                              Preferences().setLocale(Locale("ja", ""));
+                            });
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: FutureBuilder<List<Qr>>(
@@ -101,7 +155,7 @@ class _QrListPageState extends State<QrListPage> {
       // 新規ボタン
       floatingActionButton: FloatingActionButton(
         onPressed: () async => _popQrDetail(null),
-        tooltip: 'New QR Code',
+        // tooltip: 'New QR Code',
         child: Icon(Icons.add),
       ),
     );
