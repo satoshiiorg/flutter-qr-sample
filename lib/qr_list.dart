@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:qr_generator/db.dart';
 import 'package:qr_generator/preferences.dart';
 import 'package:qr_generator/qr.dart';
@@ -50,48 +50,39 @@ class _QrListPageState extends State<QrListPage> {
     final l18n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-          title : Text(l18n.qrCodeList)
+          title : I18nText('qrCodeList')
       ),
+      // ハンバーガーメニュー（設定）
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            // DrawerHeader(
-            //   child: Text(
-            //     'Settings',
-            //     // style: TextStyle(
-            //     //   fontSize: 24,
-            //     //   color: Colors.white,
-            //     // ),
-            //   ),
-            //   // decoration: BoxDecoration(
-            //   //   color: Colors.blue,
-            //   // ),
-            // ),
+            // 言語設定
             ListTile(
-              title: Text("言語設定"),
+              title: I18nText('languageSettings'),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) {
                     return SimpleDialog(
-                      title: Text("言語設定"),
+                      title: I18nText('languageSettings'),
                       children: <Widget>[
+                        // TODO まとめる
                         SimpleDialogOption(
-                          child: Text("English"),
-                          onPressed: () {
-                            setState(() {
-                              Preferences().locale = Locale("en", "");
-                            });
+                          child: Text('日本語'),
+                          onPressed: () async {
+                            Preferences().locale = ja;
+                            await FlutterI18n.refresh(context, ja);
+                            setState(() {});
                             Navigator.pop(context);
                             Navigator.pop(context);
                           },
                         ),
                         SimpleDialogOption(
-                          child: Text("日本語"),
-                          onPressed: () {
-                            setState(() {
-                              Preferences().locale = Locale("ja", "");
-                            });
+                          child: Text('English'),
+                          onPressed: () async {
+                            Preferences().locale = en;
+                            await FlutterI18n.refresh(context, en);
+                            setState(() {});
                             Navigator.pop(context);
                             Navigator.pop(context);
                           },
@@ -125,8 +116,9 @@ class _QrListPageState extends State<QrListPage> {
                           context: context,
                           builder: (_) {
                             return AlertDialog(
-                              title: Text(l18n.deleteTitle(data[i].title)),
-                              content: Text(l18n.deleteMessage),
+                              title: I18nText('deleteTitle',
+                                  translationParams: {'title': data[i].title}),
+                              content: I18nText('deleteMessage'),
                               actions: <Widget>[
                                 // ボタン領域
                                 TextButton(

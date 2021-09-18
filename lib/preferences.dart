@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+const Locale ja = Locale('ja', '');
+const Locale en = Locale('en', '');
+
 class Preferences {
   static final Preferences _instance = Preferences._internal();
 
@@ -18,7 +21,7 @@ class Preferences {
     prefs = await SharedPreferences.getInstance();
     final languageCode = prefs!.getString('language_code');
     if(languageCode != null) {
-      _locale = Locale(languageCode, "");
+      _locale = Locale(languageCode, '');
     }
     loaded = true;
   }
