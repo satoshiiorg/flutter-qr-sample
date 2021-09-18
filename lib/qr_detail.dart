@@ -37,7 +37,6 @@ class _QrDetailPageState extends State<QrDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l18n = AppLocalizations.of(context)!;
     return WillPopScope(
         onWillPop: () {
           Navigator.pop(context);

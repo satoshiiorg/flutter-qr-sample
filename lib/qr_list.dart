@@ -47,7 +47,6 @@ class _QrListPageState extends State<QrListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l18n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
           title : I18nText('qrCodeList')
