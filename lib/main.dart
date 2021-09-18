@@ -41,10 +41,10 @@ class _MyAppState extends State<MyApp> {
         final supported = supportedLocales.any(
                 (e) => e.languageCode == deviceLocale?.languageCode);
         if (supported) {
-          Preferences().setLocale(deviceLocale);
+          Preferences().locale = deviceLocale;
           return deviceLocale;
         } else {
-          Preferences().setLocale(supportedLocales.first);
+          Preferences().locale = supportedLocales.first;
           return supportedLocales.first;
         }
       },

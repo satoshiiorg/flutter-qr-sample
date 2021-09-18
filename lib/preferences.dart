@@ -24,7 +24,7 @@ class Preferences {
   }
 
   get locale => _locale;
-  setLocale(locale) {
+  set locale(locale) {
     _locale = locale;
     prefs!.setString('language_code', locale.languageCode);
   }

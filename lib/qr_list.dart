@@ -80,7 +80,7 @@ class _QrListPageState extends State<QrListPage> {
                           child: Text("English"),
                           onPressed: () {
                             setState(() {
-                              Preferences().setLocale(Locale("en", ""));
+                              Preferences().locale = Locale("en", "");
                             });
                             Navigator.pop(context);
                             Navigator.pop(context);
@@ -90,7 +90,7 @@ class _QrListPageState extends State<QrListPage> {
                           child: Text("日本語"),
                           onPressed: () {
                             setState(() {
-                              Preferences().setLocale(Locale("ja", ""));
+                              Preferences().locale = Locale("ja", "");
                             });
                             Navigator.pop(context);
                             Navigator.pop(context);
