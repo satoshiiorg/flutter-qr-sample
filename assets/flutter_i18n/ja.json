@@ -1,0 +1,11 @@
+{
+  "languageSettings": "言語設定",
+  "qrCodeList": "QRコード一覧",
+  "detailTitle": "{title} QRコード",
+  "newQr": "新規",
+  "deleteTitle": "{title} を削除します",
+  "deleteMessage": "よろしいですか?",
+  "title": "QRコード名",
+  "text": "テキスト",
+  "save": "保存"
+}

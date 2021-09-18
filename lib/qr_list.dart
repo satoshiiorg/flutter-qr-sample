@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:qr_generator/db.dart';
+import 'package:qr_generator/preferences.dart';
 import 'package:qr_generator/qr.dart';
 import 'package:qr_generator/qr_detail.dart';
 
@@ -47,7 +49,51 @@ class _QrListPageState extends State<QrListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title : Text("QR Code List")
+          title : I18nText('qrCodeList')
+      ),
+      // ハンバーガーメニュー（設定）
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            // 言語設定
+            ListTile(
+              title: I18nText('languageSettings'),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SimpleDialog(
+                      title: I18nText('languageSettings'),
+                      children: <Widget>[
+                        // TODO まとめる
+                        SimpleDialogOption(
+                          child: Text('日本語'),
+                          onPressed: () async {
+                            Preferences().locale = ja;
+                            await FlutterI18n.refresh(context, ja);
+                            setState(() {});
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                        ),
+                        SimpleDialogOption(
+                          child: Text('English'),
+                          onPressed: () async {
+                            Preferences().locale = en;
+                            await FlutterI18n.refresh(context, en);
+                            setState(() {});
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: FutureBuilder<List<Qr>>(
@@ -69,8 +115,9 @@ class _QrListPageState extends State<QrListPage> {
                           context: context,
                           builder: (_) {
                             return AlertDialog(
-                              title: Text("Delete '${data[i].title}'"),
-                              content: Text("Are you sure?"),
+                              title: I18nText('deleteTitle',
+                                  translationParams: {'title': data[i].title}),
+                              content: I18nText('deleteMessage'),
                               actions: <Widget>[
                                 // ボタン領域
                                 TextButton(

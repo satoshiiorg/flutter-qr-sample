@@ -1,0 +1,11 @@
+{
+  "languageSettings": "Language",
+  "qrCodeList": "QR Code List",
+  "detailTitle": "{title} QR Code",
+  "newQr": "New",
+  "deleteTitle": "Delete {title}",
+  "deleteMessage": "Are you sure?",
+  "title": "Title",
+  "text": "Text",
+  "save": "Save"
+}
